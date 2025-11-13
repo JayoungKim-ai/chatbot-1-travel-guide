@@ -1,3 +1,11 @@
+# ----------------------------------------------------------------------
+# API 숨기기
+#  1. 해당 작업 폴더 내에 .streamlit 폴더 생성
+#  2. .streamlit 폴더 내에 secrets.toml 파일 생성
+#  3. secrets.toml 파일에 아래 내용 추가
+#     openai_api_key="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+# ----------------------------------------------------------------------
+
 import streamlit as st
 from openai import OpenAI
 import os
@@ -62,7 +70,8 @@ st.markdown(
 # ----------------------------------------------------------------------
 st.sidebar.title("⚙️ 설정")
 
-openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
+# openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
+openai_api_key = st.secrets.get("openai_api_key", "")
 
 preferred_lang = st.sidebar.selectbox("응답 언어", ["한국어", "English"])
 travel_style = st.sidebar.selectbox("여행 스타일", ["배낭여행", "휴양", "미식", "럭셔리"])
